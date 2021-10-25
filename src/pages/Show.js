@@ -3,9 +3,10 @@
 
 // ========== Define the function that is the Component ==========
 // ----- be sure to declare props -----
-function Header(props) {
-    return <h1>Header Component</h1>;
+const Show = (props) => {
+    // ----- RETURN some JSX -----
+    return <h1>Show Component</h1>
 }
 
 // ========== EXPORT the COMPONENT ==========
-export default Header;
+export default Show;
