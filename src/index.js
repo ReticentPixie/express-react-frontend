@@ -1,13 +1,23 @@
+// ========== IMPORT DEPENDENCIES ==========
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import SCSS file to be source of styling
+import './styles.scss';
+// import router
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// ========== WRAP Everything in the ROUTER ==========
+// HOC pattern - higher order component 
+// higher order functions accept a function as an argument or returns a function (examples - forEach() and all methods on arrays are higher order functions that accept a callback function as an argument)
+// higher order components (HOCs) accept or return another component
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Router>,
   document.getElementById('root')
 );
 
