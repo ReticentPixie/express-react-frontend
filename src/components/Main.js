@@ -1,6 +1,6 @@
 // ========== IMPORT DEPENDENCIES ==========
 import { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 // you can use Redirect to prevent someone from trying to reload the show page before the data is available
 import Index from '../pages/Index';
 import Show from '../pages/Show';
@@ -97,7 +97,7 @@ const Main = (props) => {
             </Switch>
         </main>
     );
-};
+}
 
 // ========== EXPORT the COMPONENT ==========
 export default Main;
