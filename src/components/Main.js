@@ -87,7 +87,7 @@ const Main = (props) => {
                         <Redirect to='/' />
                     )}
                 />
-                to 
+                {/* to create a 404 error page you can add a new route, and link to '/404' with a link back to the home page */}
                 <Route to='/404'>
                     <div>
                         <h1>Page not Found</h1>
