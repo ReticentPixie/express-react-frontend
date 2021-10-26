@@ -38,7 +38,7 @@ const Index = (props) => {
     const loaded = () => {
         return props.people.map((person) => (
             <div key={person._id} className='person'>
-                <Link to={`/person/${person._id}`}>
+                <Link to={`/people/${person._id}`}>
                     <h1>{person.name}</h1>
                 </Link>
                 <img style={{height: 250, borderRadius: '50%'}} src={person.image} alt={person.name} />

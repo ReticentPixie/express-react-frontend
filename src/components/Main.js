@@ -70,20 +70,28 @@ const Main = (props) => {
                     <Index people={people} createPeople={createPeople}/>
                 </Route>
                 <Route
-                    path='/person/:id'
+                    path='/people/:id'
                     render={(rp) => (
                         // render props or 'rp' for short 
                         // rp has 2 properties: history, location, match
                         // by spreading out the render props (...rp) you can avoid having to list out the props individually (e.g., history={rp.history} match={rp.match} etc.)
-                        <Show 
-                            // Show page needs access to 3 things - our people array and the updatePeople and deletePeople helper functions so pass those in as props
-                            people={people}
-                            updatePeople={updatePeople}
-                            deletePeople={deletePeople}
-                            {...rp} 
-                        />
+                        people.length ?
+                            <Show 
+                                // Show page needs access to 3 things - our people array and the updatePeople and deletePeople helper functions so pass those in as props
+                                people={people}
+                                updatePeople={updatePeople}
+                                deletePeople={deletePeople}
+                                {...rp} 
+                            />
                     )}
                 />
+                to 
+                <Route to='/404'>
+                    <div>
+                        <h1>Page not Found</h1>
+                        <Link to='/'>Go Back to Home Page</Link>
+                    </div>
+                </Route>
             </Switch>
         </main>
     );
