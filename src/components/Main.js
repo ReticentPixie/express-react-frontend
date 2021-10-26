@@ -24,11 +24,38 @@ const Main = (props) => {
         await fetch(URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'Application/json',
+              'Content-Type': 'Application/json',
             },
             body: JSON.stringify(person),
-        });
+          });
         // update list of people
+        getPeople();
+    };
+
+    // helper function to update a person whenever called
+    // will take in a single person as an argument and return the people list with the updated person's info
+    const updatePeople = async (person, id) => {
+        // make PUT request to the API (concatonate the URL + id becuase on the backend the request is findByIdAndUpdate)
+        await fetch(URL + id, {
+            method: 'PUT',
+            // this request does transfer data so it needs headers
+            headers: {
+                'Content-Type': 'Application/json',
+            },
+            // add the reques body (the stringified json of the updated person)
+            body: JSON.stringify(person),
+        });
+        // call getPeople() to reset state with the latest version of people that also now includes updates made to any document
+        getPeople();
+    };
+
+    // helper function to delete a person
+    const deletePeople = async(id) => {
+        // make 'DELETE' request
+        await fetch(URL + id, {
+            method: 'DELETE',
+        });
+        // call getPeople() to reset state with the latest version of people that also now includes updates made to any document
         getPeople();
     };
 
@@ -42,18 +69,24 @@ const Main = (props) => {
                     <Index people={people} createPeople={createPeople}/>
                 </Route>
                 <Route
-                    path="/people/:id"
+                    path='/person/:id'
                     render={(rp) => (
                         // render props or 'rp' for short 
                         // rp has 2 properties: history, location, match
                         // by spreading out the render props (...rp) you can avoid having to list out the props individually (e.g., history={rp.history} match={rp.match} etc.)
-                        <Show {...rp} />
+                        <Show 
+                            // Show page needs access to 3 things - our people array and the updatePeople and deletePeople helper functions so pass those in as props
+                            people={people}
+                            updatePeople={updatePeople}
+                            deletePeople={deletePeople}
+                            {...rp} 
+                        />
                     )}
                 />
             </Switch>
         </main>
-    )
-}
+    );
+};
 
 // ========== EXPORT the COMPONENT ==========
 export default Main;
