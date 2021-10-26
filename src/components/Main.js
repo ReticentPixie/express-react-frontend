@@ -83,6 +83,8 @@ const Main = (props) => {
                                 deletePeople={deletePeople}
                                 {...rp} 
                             />
+                        :
+                        <Redirect to='/' />
                     )}
                 />
                 to 
